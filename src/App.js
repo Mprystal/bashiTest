@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import { LanguageContext } from './contexts/LanguageContext';
 import { HelmetProvider } from 'react-helmet-async';
 import './App.css';
@@ -14,6 +14,8 @@ import LangLinks from './components/LangLinks/LangLinks';
 
 function App() {
   const [currentLanguage, setCurrentLanguage] = useState('en');
+  const location = useLocation();
+  const pathname = location.pathname;
 
   useEffect(() => {
     if (localStorage.getItem('lang')) {
@@ -24,6 +26,10 @@ function App() {
   useEffect(() => {
     localStorage.setItem('lang', currentLanguage);
   });
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   function handleArLanguageChangeClick() {
     if (currentLanguage !== 'ar') {
