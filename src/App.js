@@ -16,7 +16,9 @@ function App() {
   const [currentLanguage, setCurrentLanguage] = useState('en');
 
   useEffect(() => {
-    setCurrentLanguage(localStorage.getItem('lang'));
+    if (localStorage.getItem('lang')) {
+      setCurrentLanguage(localStorage.getItem('lang'));
+    }
   }, []);
 
   useEffect(() => {
