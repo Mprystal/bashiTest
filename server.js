@@ -1,12 +1,13 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('/build'));
-  app.get('*', function () {
-    throw new Error('Requested resource not found');
-  });
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html')),
+  );
 }
 
 app.listen(PORT, () => console.log(`App listening at port ${PORT}`));
