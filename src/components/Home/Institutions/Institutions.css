@@ -1,0 +1,67 @@
+.institutions {
+  max-width: 53rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+}
+
+.institutions__statebar {
+  height: 12rem;
+}
+
+.institutions__aila {
+  height: 9rem;
+}
+
+.institutions__tenth {
+  height: 9rem;
+}
+
+.institutions__wake {
+  height: 9rem;
+  padding: 0 75px;
+}
+
+@media screen and (max-width: 800px) {
+  .institutions {
+    margin-top: 2rem;
+    max-width: 100%;
+  }
+
+  .institutions__statebar {
+    height: 16rem;
+  }
+
+  .institutions__aila,
+  .institutions__tenth,
+  .institutions__wake {
+    height: 14rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .institutions {
+    margin-top: 0;
+  }
+
+  .institutions__statebar {
+    height: 22rem;
+  }
+
+  .institutions__aila {
+    height: 20rem;
+    padding-bottom: 4rem;
+  }
+
+  .institutions__tenth {
+    height: 20rem;
+    padding-bottom: 4rem;
+  }
+
+  .institutions__wake {
+    height: 20rem;
+    padding-bottom: 8rem;
+  }
+}

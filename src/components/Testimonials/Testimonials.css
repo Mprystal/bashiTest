@@ -1,0 +1,27 @@
+.testimonials {
+  height: 92vh;
+  background-size: cover;
+  background-image: linear-gradient(
+      rgba(16, 29, 44, 0.7),
+      rgba(16, 29, 44, 0.7)
+    ),
+    url(../../img/coming-soon.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonials__filler {
+  color: white;
+  padding-top: 5rem;
+  margin: 0;
+  font-size: 8vw;
+}
+
+@media screen and (max-width: 1024px) {
+  .testimonials__filler {
+    font-size: 7rem;
+  }
+}

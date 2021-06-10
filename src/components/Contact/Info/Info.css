@@ -1,0 +1,175 @@
+.info {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    'phone'
+    'email'
+    'office'
+    'fax'
+    'mailing'
+    'social';
+  gap: 1rem 2rem;
+  width: clamp(65%, 600px, 80%);
+  order: 2;
+}
+
+.info__container_phone {
+  grid-area: phone;
+}
+.info__container_mailing {
+  grid-area: mailing;
+}
+.info__container_fax {
+  grid-area: fax;
+}
+.info__container_email {
+  grid-area: email;
+}
+.info__container_office {
+  grid-area: office;
+}
+.info__container_social {
+  grid-area: social;
+}
+
+.info__method {
+  font-size: 1.5rem;
+  margin-top: 0;
+  color: var(--color-navy-2);
+}
+
+.info__link-list,
+.info__container_text {
+  font-size: 1.2rem;
+  color: var(--color-blue-1);
+  list-style: none;
+  padding: 0;
+}
+
+.info__container_text {
+  margin-bottom: 1rem;
+}
+
+.info__link-list_social {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 150px;
+  margin: 0 auto;
+}
+
+.info__link {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-blue-1);
+}
+
+.info__link:hover {
+  color: var(--color-blue-2);
+}
+
+.info__social-img {
+  margin: 0.5rem 0 0 0.5rem;
+  height: 64px;
+}
+
+@media screen and (max-width: 1400px) {
+  .info {
+    order: 1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'phone email'
+      'fax fax'
+      'office mailing '
+      'social social';
+
+    margin-bottom: 2rem;
+  }
+  .info__method {
+    font-size: 2rem;
+  }
+  .info__link,
+  .info__container_text {
+    font-size: 1.3rem;
+  }
+
+  .info__container_social {
+    margin-top: 2rem;
+  }
+
+  .info__link-list_social {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .info__method {
+    font-size: 2.5rem;
+  }
+  .info__link,
+  .info__container_text {
+    font-size: 1.7rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .info__method {
+    margin: 0;
+  }
+
+  .info__container_fax {
+    align-self: center;
+  }
+
+  .info__container_social {
+    margin: 0;
+  }
+
+  .info__link-list_social {
+    margin-top: 1rem;
+    max-width: 80%;
+  }
+  .info__social-img {
+    height: 6.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .info__method {
+    font-size: 3.5rem;
+  }
+  .info__link,
+  .info__container_text {
+    font-size: 2rem;
+  }
+  .info__social-img {
+    height: 8rem;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .info {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'phone'
+      'email'
+      'office'
+      'fax'
+      'mailing'
+      'social';
+  }
+  .info__link-list_social {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .info__link,
+  .info__container_text {
+    font-size: 2.5rem;
+  }
+
+  .info__social-img {
+    height: 8rem;
+  }
+}

@@ -1,0 +1,36 @@
+:root {
+  --color-navy-1: #101d2c;
+  --color-navy-2: #000050;
+
+  --color-blue-1: #344f6d;
+  --color-blue-2: #526e8f;
+  --color-blue-3: hsl(212, 49%, 59%);
+}
+
+@media screen and (max-width: 1280px) {
+  html {
+    font-size: 70%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  html {
+    font-size: 57%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  html {
+    font-size: 35%;
+  }
+}
+
+body {
+  margin: 0;
+}

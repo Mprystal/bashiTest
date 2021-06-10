@@ -1,0 +1,54 @@
+.header {
+  width: 100%;
+  background-image: linear-gradient(
+      rgba(16, 29, 44, 0.8),
+      rgba(16, 29, 44, 0.8)
+    ),
+    url(../../../img/raleigh.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  padding-top: 8rem;
+  padding-bottom: 2rem;
+}
+
+.header__title {
+  margin: 0 1rem;
+}
+
+.header__paragraph {
+  padding: 0 25px;
+  font-size: 2rem;
+}
+
+.header__title_uppercase {
+  text-transform: uppercase;
+}
+
+.header__paragraph_reg {
+  font-style: italic;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 1400px) {
+  .header__paragraph {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .header__paragraph {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .header {
+    padding-top: 3rem;
+  }
+
+  .header__title {
+    margin: 0 1rem;
+  }
+}

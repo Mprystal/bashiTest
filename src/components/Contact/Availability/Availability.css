@@ -1,0 +1,23 @@
+.availability {
+  border-top: 0.1rem solid rgba(0, 0, 50, 0.2);
+  max-width: 65vw;
+  min-width: 65vw;
+  margin-top: 3rem;
+  padding: 2rem;
+}
+
+.availability__paragraph {
+  color: var(--color-blue-1);
+}
+
+@media screen and (max-width: 1300px) {
+  .availability__paragraph {
+    padding-top: 1.5rem;
+  }
+}
+@media screen and (max-width: 785px) {
+  .availability {
+    margin-top: 6rem;
+    padding: 1.5rem;
+  }
+}

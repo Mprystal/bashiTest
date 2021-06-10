@@ -1,0 +1,19 @@
+.values {
+  max-width: 1425px;
+  margin: 0 4rem;
+}
+
+.values__header {
+  margin: 4rem 0 1rem 0;
+  color: var(--color-navy-2);
+}
+
+.values__paragraph {
+  color: var(--color-blue-1);
+}
+
+@media screen and (max-width: 650px) {
+  .values__header {
+    margin-top: 0;
+  }
+}

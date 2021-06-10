@@ -1,0 +1,108 @@
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cards__img_gavel {
+  height: 18rem;
+}
+
+.cards__img_teampic {
+  height: 18rem;
+}
+
+.cards__header {
+  font-size: 2.8rem;
+  padding: 1.5rem 0;
+  color: var(--color-navy-2);
+  margin: 0;
+}
+
+.cards__paragraph {
+  max-width: 430px;
+  margin-top: 0;
+  padding: 0;
+  color: var(--color-blue-1);
+}
+
+.cards__btn {
+  border: none;
+  color: var(--color-navy-2);
+  font-size: 2rem;
+  padding-left: 3rem;
+  border-bottom: none;
+  padding-bottom: 0.2rem;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  will-change: transform;
+}
+
+.cards__btn span {
+  margin-left: 0.3rem;
+  transition: margin-left 0.2s;
+}
+
+.cards__btn:hover {
+  color: var(--color-blue-2);
+}
+
+.cards__btn:hover span {
+  margin-left: 0.8rem;
+}
+
+.cards__btn:focus {
+  outline: none;
+}
+
+@media screen and (max-width: 1400px) {
+  .cards__header {
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .cards__paragraph {
+    max-width: 26rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .cards__img_gavel {
+    width: 33rem;
+    height: 19rem;
+  }
+
+  .cards__img_teampic {
+    height: 19rem;
+  }
+
+  .cards__header {
+    font-size: 3.5rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .cards__img_gavel {
+    padding-top: 3rem;
+    width: 43rem;
+    height: 25rem;
+  }
+
+  .cards__img_teampic {
+    padding-top: 2rem;
+
+    height: 29rem;
+  }
+
+  .cards__paragraph {
+    max-width: 35rem;
+  }
+
+  .cards__btn {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+  }
+}

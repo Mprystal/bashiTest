@@ -1,0 +1,47 @@
+.footer {
+  background-color: var(--color-navy-1);
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.footer__company-name {
+  font-size: 2.5rem;
+}
+
+.footer__paragraph {
+  font-size: 1.7rem;
+  margin: 0.4rem 0;
+  color: white;
+}
+
+.footer__link {
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer__link:hover {
+  color: var(--color-blue-2);
+}
+
+@media screen and (max-width: 1400px) {
+  .footer__company-name {
+    font-size: 1.8rem;
+  }
+
+  .footer__paragraph {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .footer__company-name {
+    font-size: 2.3rem;
+  }
+
+  .footer__paragraph {
+    font-size: 1.6rem;
+  }
+}
