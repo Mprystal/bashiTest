@@ -6,6 +6,9 @@
   --color-blue-2: #526e8f;
   --color-blue-3: hsl(212, 49%, 59%);
 }
+html {
+  font-size: 16px;
+}
 
 @media screen and (max-width: 1280px) {
   html {
