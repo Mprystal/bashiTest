@@ -7,6 +7,14 @@
   --color-blue-3: hsl(212, 49%, 59%);
 }
 
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+}
+
 @media screen and (max-width: 1280px) {
   html {
     font-size: 70%;
@@ -29,8 +37,4 @@
   html {
     font-size: 35%;
   }
-}
-
-body {
-  margin: 0;
 }
