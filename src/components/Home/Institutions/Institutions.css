@@ -48,20 +48,24 @@
 
   .institutions__statebar {
     height: 22rem;
+    width: 39rem;
   }
 
   .institutions__aila {
     height: 20rem;
+    width: 43rem;
     padding-bottom: 4rem;
   }
 
   .institutions__tenth {
     height: 20rem;
+    width: 46.25rem;
     padding-bottom: 4rem;
   }
 
   .institutions__wake {
     height: 20rem;
+    width: 23.1rem;
     padding-bottom: 8rem;
   }
 }
