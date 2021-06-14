@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 40.625em) {
+@media screen and (max-width: 650px) {
   .institutions {
     margin-top: 0;
   }
