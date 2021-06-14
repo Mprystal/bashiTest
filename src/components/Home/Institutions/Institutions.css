@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 40.625em) {
   .institutions {
     margin-top: 0;
   }
@@ -52,10 +52,10 @@
   }
 
   .institutions__aila {
-    /* height: 20rem;
-    width: 43rem; */
-    width: 241px;
-    height: 112px;
+    height: 20rem;
+    width: 43rem;
+    /* width: 241px;
+    height: 112px; */
     padding-bottom: 4rem;
   }
 
