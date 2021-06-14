@@ -52,8 +52,10 @@
   }
 
   .institutions__aila {
-    height: 20rem;
-    width: 43rem;
+    /* height: 20rem;
+    width: 43rem; */
+    width: 241px;
+    height: 112px;
     padding-bottom: 4rem;
   }
 
