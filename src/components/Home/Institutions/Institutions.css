@@ -5,6 +5,7 @@
   justify-content: space-around;
   align-items: center;
   gap: 2rem;
+  font-size: 16px;
 }
 
 .institutions__statebar {
@@ -44,6 +45,7 @@
 @media screen and (max-width: 650px) {
   .institutions {
     margin-top: 0;
+    font-size: 35%;
   }
 
   .institutions__statebar {
