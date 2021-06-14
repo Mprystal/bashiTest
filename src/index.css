@@ -5,44 +5,49 @@
   --color-blue-1: #344f6d;
   --color-blue-2: #526e8f;
   --color-blue-3: hsl(212, 49%, 59%);
-}
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
-
-html {
   font-size: 16px;
 }
+
+/* html {
+  font-size: 16px;
+} */
 
 body {
   margin: 0;
 }
 
 @media screen and (max-width: 1280px) {
-  html {
+  :root {
     font-size: 70%;
   }
+  /* html {
+    font-size: 70%;
+  } */
 }
 
 @media screen and (max-width: 800px) {
-  html {
+  :root {
     font-size: 57%;
   }
+  /* html {
+    font-size: 57%;
+  } */
 }
 
 @media screen and (max-width: 500px) {
-  html {
+  :root {
     font-size: 45%;
   }
+  /* html {
+    font-size: 45%;
+  } */
 }
 
 @media screen and (max-width: 400px) {
-  html {
+  :root {
     font-size: 35%;
   }
+  /* html {
+    font-size: 35%;
+  } */
 }
