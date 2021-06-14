@@ -17,6 +17,7 @@
   height: 3.5rem;
   color: white;
   font-size: 2rem;
+  vertical-align: middle;
 }
 
 .langlinks__btn:last-of-type {
