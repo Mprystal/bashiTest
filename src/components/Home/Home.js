@@ -22,7 +22,6 @@ function Home() {
     <main className='home'>
       <Helmet>
         <title>{forMetaTitles('home', language)}</title>
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <meta
           name='keywords'
           content={metaKeywords(changeHomeLang, language)}
