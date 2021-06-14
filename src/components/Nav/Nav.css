@@ -190,4 +190,7 @@
   .nav {
     height: 9rem;
   }
+  .nav__container_phone {
+    top: 9rem;
+  }
 }
