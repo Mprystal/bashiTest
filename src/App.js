@@ -27,9 +27,9 @@ function App() {
     localStorage.setItem('lang', currentLanguage);
   });
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [pathname]);
 
   function handleArLanguageChangeClick() {
     if (currentLanguage !== 'ar') {
