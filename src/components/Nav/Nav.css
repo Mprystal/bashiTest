@@ -99,8 +99,15 @@
     justify-content: center;
   }
 
+  .nav__link_logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .nav__logo {
-    height: 80%;
+    height: 75%;
     margin: 0 1rem 0 0;
     padding-left: 3rem;
   }
@@ -119,7 +126,7 @@
 
 @media screen and (max-width: 750px) {
   .nav {
-    height: 7rem;
+    height: 9rem;
   }
   .nav__container {
     display: none;
@@ -128,7 +135,7 @@
   .nav__container_phone {
     position: absolute;
     display: initial;
-    top: 7rem;
+    top: 9rem;
     right: 0;
     width: clamp(20vw, 35rem, 50vw);
     z-index: 100;

@@ -27,9 +27,10 @@ function App() {
     localStorage.setItem('lang', currentLanguage);
   });
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [pathname]);
+  //this may mess up, check back here
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   function handleArLanguageChangeClick() {
     if (currentLanguage !== 'ar') {

@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import Logo from '../../img/finalBashiLogo_white.svg';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import './Nav.css';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { changeNavLang } from './NavLangChange';
@@ -33,7 +33,10 @@ function Nav() {
   return (
     <nav className='nav'>
       {isPhoneNavOpen ? <Overlay onOutsideClick={handlePhoneNavClose} /> : null}
-      <img src={Logo} alt='logo' className='nav__logo' />
+
+      <Link className='nav__link_logo' to='/'>
+        <img src={Logo} alt='logo' className='nav__logo' />
+      </Link>
 
       <button className='nav__phone-btn' onClick={handlePhoneNavOpen}>
         {isPhoneNavOpen ? (
