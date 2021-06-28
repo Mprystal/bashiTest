@@ -6,6 +6,10 @@
   flex-wrap: wrap;
 }
 
+.footer__container {
+  padding: 1rem 0;
+}
+
 .footer__company-name {
   font-size: 2.5rem;
 }
