@@ -17,9 +17,8 @@ function Appointment() {
 
   // let timesNotAvailable = [];
   let gapi = window.gapi;
-  let CLIENT_ID =
-    '328359578654-sofb51ekqpt3lj8t9mrvonsqp0t9fg7e.apps.googleusercontent.com';
-  let API_KEY = 'AIzaSyASh1cuU-OGg4l4JCfP-oB1DKSa3HvvakM';
+  let CLIENT_ID = 'xxx';
+  let API_KEY = 'xxx';
 
   // Array of API discovery doc URLs for APIs used by the quickstart
   let DISCOVERY_DOCS = [
