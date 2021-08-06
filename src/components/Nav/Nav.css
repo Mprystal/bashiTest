@@ -114,7 +114,7 @@
 
   .nav__menu-link:link,
   .nav__menu-link:visited {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     padding: 1.9rem 1.2rem;
   }
 
@@ -124,7 +124,7 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .nav {
     height: 9rem;
   }

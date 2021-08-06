@@ -61,9 +61,9 @@ function Nav() {
             xmlns='http://www.w3.org/2000/svg'
             className='nav__phone-btn-svg'
           >
-            <rect x='4' y='0' width='18' height='2' fill='white' />
-            <rect x='4' y='7' width='18' height='2' fill='white' />
-            <rect x='4' y='14' width='18' height='2' fill='white' />
+            <rect x='4' y='0' width='24' height='2' fill='white' />
+            <rect x='4' y='7' width='24' height='2' fill='white' />
+            <rect x='4' y='14' width='24' height='2' fill='white' />
           </svg>
         )}
       </button>
@@ -164,6 +164,28 @@ function Nav() {
               <span lang={language}>
                 {changeNavLang.navTestimonials[language]}
               </span>
+            </NavLink>
+          </li>
+
+          <li className='nav__menu-item'>
+            <NavLink
+              className='nav__menu-link'
+              activeClassName='nav__menu-link_active'
+              exact
+              to='/appointments'
+              onClick={handlePhoneNavClose}
+            >
+              <svg
+                className='nav__icon'
+                xmlns='http://www.w3.org/2000/svg'
+                version='1.1'
+                width='24'
+                height='24'
+                viewBox='0 0 24 24'
+              >
+                <path d='M19,4H18V2H16V4H8V2H6V4H5A2,2 0 0,0 3,6V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V6A2,2 0 0,0 19,4M19,20H5V10H19V20M5,8V6H19V8H5M10.56,18.46L16.5,12.53L15.43,11.47L10.56,16.34L8.45,14.23L7.39,15.29L10.56,18.46Z' />
+              </svg>
+              <span lang={language}>Appointments</span>
             </NavLink>
           </li>
 

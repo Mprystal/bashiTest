@@ -44,7 +44,7 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 950px) {
   .langlinks {
     margin-top: 0;
     top: -6.5rem;
