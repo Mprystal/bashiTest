@@ -223,6 +223,10 @@ function Appointment() {
     }
   }
 
+  function handleConverge() {
+    convergeGet();
+  }
+
   return (
     <main className='appointment'>
       <Helmet>
@@ -308,13 +312,7 @@ function Appointment() {
           )
         }
       </div>
-      <button
-        onClick={() => {
-          convergeGet();
-        }}
-      >
-        Contact converge
-      </button>
+      <button onClick={handleConverge}>Contact converge</button>
     </main>
   );
 }

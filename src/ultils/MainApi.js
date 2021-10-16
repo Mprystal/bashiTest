@@ -27,8 +27,7 @@ export const setCalEvent = (event) => {
 };
 
 export const convergeGet = () => {
-  console.log('fetched');
-  return fetch(' https://www.convergepay.com/hosted-payments/myip').then(
-    (res) => console.log(res),
-  );
+  return fetch('https://www.convergepay.com/hosted-payments/myip')
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
 };
