@@ -1,0 +1,31 @@
+.popup {
+  position: absolute;
+  height: 400px;
+  width: 500px;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.popup__close-button {
+  background-color: transparent;
+  border: 0;
+  align-self: flex-end;
+  padding: 5px 10px 20px;
+}
+
+@media screen and (max-width: 550px) {
+  .popup {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .emailPopup {
+    width: 95%;
+    top: 20%;
+  }
+}

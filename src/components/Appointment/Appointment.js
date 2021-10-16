@@ -1,60 +1,40 @@
-import React, { useEffect, useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import './Appointment.css';
 import 'react-calendar/dist/Calendar.css';
 import Calendar from 'react-calendar';
+import Overlay from '../Overlay/Overlay';
+import Popup from '../Popup/Popup';
 import { Helmet } from 'react-helmet-async';
+import { getCalEvents, setCalEvent } from '../../ultils/MainApi';
 
-function Appointment() {
+function Appointment({ onOutsideClick }) {
   const [date, setDate] = useState(new Date());
   const [newDate, setNewDate] = useState();
   const [listEventTimes, setListEventTimes] = useState([]);
   const [timesAvailable, setTimesAvailable] = useState([]);
   const [timesNotAvailable, setTimesNotAvailable] = useState([]);
+  const [isDateClicked, setIsDateClicked] = useState(false);
+  const [isTimePopupOpen, setIsTimePopupOpen] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailTime, setEmailTime] = useState();
+  const [typeAppointment, setTypeAppointment] = useState('');
+  const [displayTypeAppointment, setDisplayTypeAppointment] = useState(true);
+  const [isPaidAppointment, setIsPaidAppointment] = useState(null);
   const ref = useRef();
 
   const workHours = ['09', '10', '11', '12', '13', '14', '15', '16'];
   let checkTime = new Date();
 
-  // let timesNotAvailable = [];
-  let gapi = window.gapi;
-  let CLIENT_ID = 'xxx';
-  let API_KEY = 'xxx';
-
-  // Array of API discovery doc URLs for APIs used by the quickstart
-  let DISCOVERY_DOCS = [
-    'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest',
-  ];
-
-  // Authorization scopes required by the API; multiple scopes can be
-  // included, separated by spaces.
-  let SCOPES =
-    'https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.readonly';
-
   useEffect(() => {
-    gapi.load('client:auth2', () => {
-      gapi.client.init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        discoveryDocs: DISCOVERY_DOCS,
-        scope: SCOPES,
-      });
-
-      gapi.client.load('calendar', 'v3', () => {
-        console.log('loaded calender');
-      });
-
-      // Listen for sign-in state changes.
-      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-
-      function updateSigninStatus() {
-        gapi.auth2.getAuthInstance().isSignedIn.get();
-      }
-    });
+    document.addEventListener('keydown', escapeClose);
+    return () => document.removeEventListener('keydown', escapeClose);
   });
 
-  const handleAuthClick = () => {
-    gapi.auth2.getAuthInstance().signIn();
-  };
+  function escapeClose(e) {
+    if (e.which === 27) {
+      setIsTimePopupOpen(false);
+    }
+  }
 
   function endEventTime(time) {
     let newTime = parseInt(time) + 1;
@@ -62,20 +42,27 @@ function Appointment() {
   }
 
   const handleEventClick = (time) => {
+    setIsTimePopupOpen(true);
+    scrollTop();
+    setEmailTime(time);
+  };
+
+  const handleEmailSubmit = (e) => {
+    e.preventDefault();
+    let newTimesNotAvailable = [...timesNotAvailable, emailTime];
+    setTimesNotAvailable(newTimesNotAvailable);
+
     let event = {
       summary: 'Appointment with Bashi Law PLLC',
       location: '817 Brooklyn Street Suite B Raleigh, NC 27605',
-      description: 'Appointment to discuss services with Bashi Law PLLC',
+      description: `Appointment to discuss ${typeAppointment} services with Bashi Law PLLC`,
       start: {
-        dateTime: `${newDate}T${time}:00:00-04:00`,
+        dateTime: `${newDate}T${emailTime}:00:00-04:00`,
       },
       end: {
-        dateTime: `${newDate}T${endEventTime(time)}:00:00-04:00`,
+        dateTime: `${newDate}T${endEventTime(emailTime)}:00:00-04:00`,
       },
-      attendees: [
-        { email: 'lpage@example.com' },
-        { email: 'sbrin@example.com' },
-      ],
+      attendees: [{ email }],
       reminders: {
         useDefault: false,
         overrides: [
@@ -84,29 +71,63 @@ function Appointment() {
         ],
       },
     };
-    let newTimesNotAvailable = [...timesNotAvailable, time];
 
-    setTimesNotAvailable(newTimesNotAvailable);
-
-    let req = gapi.client.calendar.events.insert({
-      calendarId: 'primary',
-      resource: event,
+    setCalEvent(event).catch((err) => {
+      console.log(err.message);
     });
 
-    req.execute((event) => {
-      console.log(event);
-    });
+    handleOutsidePopupClick();
   };
 
-  const handleLogoutClick = () => {
-    gapi.auth2.getAuthInstance().signOut();
+  const onNextClick = () => {
+    let newTimesNotAvailable = [...timesNotAvailable, emailTime];
+    setTimesNotAvailable(newTimesNotAvailable);
+
+    let event = {
+      summary: 'Appointment with Bashi Law PLLC',
+      location: '817 Brooklyn Street Suite B Raleigh, NC 27605',
+      description: `Appointment to discuss ${typeAppointment} services with Bashi Law PLLC`,
+      start: {
+        dateTime: `${newDate}T${emailTime}:00:00-04:00`,
+      },
+      end: {
+        dateTime: `${newDate}T${endEventTime(emailTime)}:00:00-04:00`,
+      },
+      reminders: {
+        useDefault: false,
+        overrides: [
+          { method: 'email', minutes: 24 * 60 },
+          { method: 'popup', minutes: 10 },
+        ],
+      },
+    };
+
+    setCalEvent(event).catch((err) => {
+      console.log(err);
+    });
+
+    handleOutsidePopupClick();
   };
 
   const onDateChange = (date) => {
+    let eventDate = date.toISOString();
     setDate(date);
     convertDate(date);
-    //read the time slots available after change
-    timeSlotsAvailable(date);
+    //read the time slots available after date change
+    getCalEvents(eventDate)
+      .then((res) => {
+        setListEventTimes(res.data.items);
+      })
+      .then(() => {
+        return timesNotAvailableFunction;
+      })
+      .then(() => {
+        return timesAvailableFunction;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    setIsDateClicked(true);
   };
 
   const convertDate = (date) => {
@@ -123,30 +144,7 @@ function Appointment() {
     return setNewDate(newDate);
   };
 
-  const timeSlotsAvailable = (date) => {
-    gapi.client.calendar.events
-      .list({
-        calendarId: 'primary',
-        timeMin: date.toISOString(),
-        showDeleted: false,
-        singleEvents: true,
-        maxResults: 20,
-        orderBy: 'startTime',
-      })
-      .then((res) => {
-        setListEventTimes(res.result.items);
-      })
-      .then(() => {
-        return timesNotAvailableFunction;
-      })
-      .then(() => {
-        return timesAvailableFunction;
-      });
-  };
-
   const timesNotAvailableFunction = useMemo(() => {
-    // let fghgh = new Date();
-    // console.log(fghgh.getHours().toString());
     let tempArray = [];
     listEventTimes.forEach((event) => {
       //check to see if event day = clicked day
@@ -167,7 +165,7 @@ function Appointment() {
 
   const timesAvailableFunction = useMemo(() => {
     setTimesAvailable(workHours.filter((n) => !timesNotAvailable.includes(n)));
-  }, [timesNotAvailable]);
+  }, [timesNotAvailable]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function timeConversion(time) {
     switch (time) {
@@ -191,6 +189,40 @@ function Appointment() {
         console.log('nocase');
     }
   }
+
+  function handleOutsidePopupClick() {
+    setIsTimePopupOpen(false);
+    setDisplayTypeAppointment(true);
+  }
+
+  function emailChangeHandler(e) {
+    setEmail(e.target.value);
+  }
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  function appointmentTypeChange(e) {
+    setTypeAppointment(e.target.value);
+  }
+
+  function handleClientAcceptPaymentClick() {
+    //add converge logic under confirm popup button
+    console.log('yes');
+  }
+
+  function handleFormChangeClick() {
+    setDisplayTypeAppointment(false);
+    if (['Family Law', 'Civil Law', 'Felony'].includes(typeAppointment)) {
+      //send to payment page
+      setIsPaidAppointment(true);
+    } else {
+      //go to email form
+      setIsPaidAppointment(false);
+    }
+  }
+
   return (
     <main className='appointment'>
       <Helmet>
@@ -199,30 +231,25 @@ function Appointment() {
         <meta name='description' />
         <link rel='canonical' href='http://www.bashilawpllc.com/appointment' />
       </Helmet>
+      {isTimePopupOpen && <Overlay onOutsideClick={handleOutsidePopupClick} />}
+      {isTimePopupOpen && (
+        <Popup
+          email={email}
+          emailChangeHandler={emailChangeHandler}
+          handleEmailSubmit={handleEmailSubmit}
+          onNextClick={onNextClick}
+          onCloseClick={handleOutsidePopupClick}
+          appointmentTypeChange={appointmentTypeChange}
+          handleFormChangeClick={handleFormChangeClick}
+          isPaidAppointment={isPaidAppointment}
+          displayTypeAppointment={displayTypeAppointment}
+          onClientAcceptPaymentClick={handleClientAcceptPaymentClick}
+        />
+      )}
       <h1 className='appointment__header h1_textSize'>
         Schedule An Appointment
       </h1>
       <div className='appointment__container'>
-        <p className='appointment__paragraph p_textSize'>
-          To make an appointment, you must login to Googles authentication
-          first. This will send you an email and update your Google calendar
-          once an appointment is scheduled.
-        </p>
-
-        <button
-          className='appointment__authorize_button'
-          onClick={handleAuthClick}
-        >
-          Authorize into OAuth account
-        </button>
-
-        <button
-          className='appointment__signout_button'
-          onClick={handleLogoutClick}
-        >
-          Sign Out
-        </button>
-
         <p className='appointment__paragraph p_textSize'>
           Select a day to see what time slots are available. Must select today,
           if youd like to schedule for today
@@ -239,9 +266,26 @@ function Appointment() {
         />
 
         <ul className='appointment__list' ref={ref}>
-          {timesAvailable.map((time) => {
-            if (checkTime.getDate() === date.getDate()) {
-              if (checkTime.getHours().toString() < time) {
+          {isDateClicked &&
+            timesAvailable.map((time) => {
+              //if today = clickedday and if the time hasnt passed
+              if (checkTime.getDate() === date.getDate()) {
+                if (
+                  checkTime.getHours().toString() < time ||
+                  checkTime.getHours().toString() < 10
+                ) {
+                  return (
+                    <li className='appointment__list-item' key={time}>
+                      <button
+                        className='appointment__list-item_button'
+                        onClick={() => handleEventClick(time)}
+                      >
+                        {timeConversion(time)}
+                      </button>
+                    </li>
+                  );
+                }
+              } else {
                 return (
                   <li className='appointment__list-item' key={time}>
                     <button
@@ -253,25 +297,16 @@ function Appointment() {
                   </li>
                 );
               }
-            } else {
-              return (
-                <li className='appointment__list-item' key={time}>
-                  <button
-                    className='appointment__list-item_button'
-                    onClick={() => handleEventClick(time)}
-                  >
-                    {timeConversion(time)}
-                  </button>
-                </li>
-              );
-            }
-          })}
+            })}
         </ul>
-        {ref.current && ref.current.children.length === 0 ? (
-          <p className='p_textSize'>No times available for today</p>
-        ) : (
-          ''
-        )}
+        {
+          // ref.current && ref.current.children.length === 0
+          timesAvailable.length === 0 ? (
+            <p className='p_textSize'>No times available for today</p>
+          ) : (
+            ''
+          )
+        }
       </div>
     </main>
   );

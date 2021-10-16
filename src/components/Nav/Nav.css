@@ -165,6 +165,7 @@
     margin-right: 1.3rem;
     justify-content: center;
     align-items: center;
+    z-index: 10000;
   }
 
   .nav__icon {

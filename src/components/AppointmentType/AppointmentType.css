@@ -1,0 +1,127 @@
+.appointmentType {
+  background-color: white;
+  color: var(--color-navy-2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.appointmentType__text {
+  margin: 20px;
+  font-size: 1.5rem;
+}
+
+.appointmentType__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 250px 180px;
+  justify-items: flex-start;
+  width: 80%;
+}
+
+.appointmentType__list-item {
+  padding: 10px 0;
+  font-size: 1.3rem;
+}
+
+.appointmentType__input {
+  margin-right: 10px;
+  transform: scale(1.5);
+}
+.appointmentType__button {
+  font-size: 1.5rem;
+  background-color: var(--color-blue-2);
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  width: 200px;
+  height: 60px;
+  margin: 20px 0;
+}
+
+.appointmentType__button:hover {
+  background-color: var(--color-blue-3);
+  transition: ease-in-out 0.2s;
+}
+
+.appointmentType__button:active {
+  background-color: var(--color-blue-1);
+}
+
+@media screen and (max-width: 1280px) {
+  .appointmentType__text {
+    font-size: 2.2rem;
+  }
+
+  .appointmentType__list-item {
+    font-size: 1.8rem;
+  }
+
+  .appointmentType__input {
+    margin-right: 15px;
+  }
+
+  .appointmentType__button {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .appointmentType__text {
+    font-size: 2.7rem;
+  }
+
+  .appointmentType__list-item {
+    font-size: 2.3rem;
+  }
+  .appointmentType__button {
+    font-size: 2.7rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .appointmentType__text {
+    font-size: 4rem;
+  }
+
+  .appointmentType__list-item {
+    font-size: 3.5rem;
+  }
+
+  .appointmentType__list {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  .appointmentType__input {
+    margin-left: 40px;
+    margin-right: 60px;
+    transform: scale(3);
+  }
+
+  .appointmentType__button {
+    font-size: 4rem;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .appointmentType__text {
+    font-size: 4.3rem;
+  }
+
+  .appointmentType__list-item {
+    font-size: 4rem;
+  }
+  .appointmentType__input {
+    transform: scale(2);
+  }
+
+  .appointmentType__button {
+    font-size: 4rem;
+    width: 90%;
+  }
+}

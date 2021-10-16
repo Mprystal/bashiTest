@@ -1,0 +1,75 @@
+.confirmPayment {
+  background-color: white;
+  font-size: 1.5rem;
+  color: var(--color-navy-2);
+  border-radius: 10px;
+}
+
+.confirmPayment__text {
+  padding: 20px 20px 0;
+  margin-bottom: 0;
+}
+
+.confirmPayment__button {
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  width: 175px;
+  height: 75px;
+  background-color: var(--color-blue-2);
+  margin: 40px 0;
+  font-size: 1.5rem;
+}
+
+.confirmPayment__button:hover {
+  background-color: var(--color-blue-3);
+  transition: ease-in-out 0.2s;
+}
+
+.confirmPayment__button:active {
+  background-color: var(--color-blue-1);
+}
+
+.confirmPayment__button:last-of-type {
+  margin-left: 50px;
+}
+
+@media screen and (max-width: 1280px) {
+  .confirmPayment,
+  .onfirmPayment__button {
+    font-size: 2.2rem;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .confirmPayment,
+  .confirmPayment__button {
+    font-size: 2.7rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .confirmPayment {
+    font-size: 4rem;
+  }
+
+  .confirmPayment__text {
+    margin-bottom: 20px;
+  }
+  .confirmPayment__button {
+    font-size: 4rem;
+    width: 90%;
+    margin: 0;
+  }
+
+  .confirmPayment__button:last-of-type {
+    margin: 20px 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .confirmPayment,
+  .confirmPayment__button {
+    font-size: 4rem;
+  }
+}

@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home';
 import Team from './components/Team/Team';
 import Appointment from './components/Appointment/Appointment';
+
 import Services from './components/Services/Services';
 import Testimonials from './components/Testimonials/Testimonials';
 import Contact from './components/Contact/Contact';

@@ -4,6 +4,7 @@
   z-index: 20;
   left: 0;
   right: 0;
+  z-index: 100;
 }
 
 .langlinks__btn {
@@ -50,7 +51,6 @@
     top: -6.5rem;
     left: 10rem;
     right: 7rem;
-    z-index: 100;
   }
 }
 

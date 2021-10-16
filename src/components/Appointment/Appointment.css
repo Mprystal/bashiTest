@@ -1,6 +1,7 @@
 .appointment {
   padding-top: 8rem;
   min-height: 85vh;
+  /* position: relative; */
 }
 
 .appointment__header {
@@ -16,7 +17,7 @@
 
 .appointment__container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 50px;
   padding: 0 2rem;
 }
 
@@ -53,6 +54,11 @@
 .appointment__list {
   list-style: none;
   padding: 0;
+  padding-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 50px;
+  justify-content: center;
 }
 
 .appointment__list-item_button {
@@ -73,6 +79,10 @@
   .react-calendar {
     width: 600px !important;
   }
+  .appointment__list-item_button {
+    height: 100px;
+    width: 300px;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -86,19 +96,20 @@
   }
 
   .appointment__list-item_button {
-    height: 100px;
-    width: 400px;
+    height: 75px;
+    width: 200px;
   }
 }
 
 @media screen and (max-width: 500px) {
-  .appointment__list-item_button {
-    width: 300px;
+  .appointment__list-item {
+    width: 100%;
+    padding: 5px 0;
   }
-}
 
-@media screen and (max-width: 400px) {
   .appointment__list-item_button {
     font-size: 4rem;
+    height: 75px;
+    width: 100%;
   }
 }
