@@ -7,7 +7,7 @@ import Popup from '../Popup/Popup';
 import { Helmet } from 'react-helmet-async';
 import { getCalEvents, setCalEvent } from '../../ultils/MainApi';
 
-function Appointment({ onOutsideClick }) {
+function Appointment() {
   const [date, setDate] = useState(new Date());
   const [newDate, setNewDate] = useState();
   const [listEventTimes, setListEventTimes] = useState([]);
