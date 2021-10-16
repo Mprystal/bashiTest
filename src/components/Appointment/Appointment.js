@@ -5,7 +5,7 @@ import Calendar from 'react-calendar';
 import Overlay from '../Overlay/Overlay';
 import Popup from '../Popup/Popup';
 import { Helmet } from 'react-helmet-async';
-import { getCalEvents, setCalEvent } from '../../ultils/MainApi';
+import { getCalEvents, setCalEvent, convergeGet } from '../../ultils/MainApi';
 
 function Appointment() {
   const [date, setDate] = useState(new Date());
@@ -308,6 +308,13 @@ function Appointment() {
           )
         }
       </div>
+      <button
+        onClick={() => {
+          convergeGet();
+        }}
+      >
+        Contact converge
+      </button>
     </main>
   );
 }

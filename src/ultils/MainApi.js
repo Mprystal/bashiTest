@@ -25,3 +25,10 @@ export const setCalEvent = (event) => {
     res.ok ? res.json() : Promise.reject(`Error! ${res.statusText}`),
   );
 };
+
+export const convergeGet = () => {
+  console.log('fetched');
+  return fetch(' https://www.convergepay.com/hosted-payments/myip').then(
+    (res) => console.log(res),
+  );
+};
