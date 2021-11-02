@@ -5,7 +5,12 @@ import Calendar from 'react-calendar';
 import Overlay from '../Overlay/Overlay';
 import Popup from '../Popup/Popup';
 import { Helmet } from 'react-helmet-async';
-import { getCalEvents, setCalEvent, convergeGet } from '../../ultils/MainApi';
+import {
+  getCalEvents,
+  setCalEvent,
+  convergeGet,
+  sendConvergeData,
+} from '../../ultils/MainApi';
 
 function Appointment() {
   const [date, setDate] = useState(new Date());
@@ -20,6 +25,8 @@ function Appointment() {
   const [typeAppointment, setTypeAppointment] = useState('');
   const [displayTypeAppointment, setDisplayTypeAppointment] = useState(true);
   const [isPaidAppointment, setIsPaidAppointment] = useState(null);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isFail, setIsFail] = useState(false);
   const ref = useRef();
 
   const workHours = ['09', '10', '11', '12', '13', '14', '15', '16'];
@@ -72,9 +79,20 @@ function Appointment() {
       },
     };
 
-    setCalEvent(event).catch((err) => {
-      console.log(err.message);
-    });
+    setCalEvent(event)
+      .then((res) => {
+        if (res.status === 'confirmed') {
+          setIsSuccess(true);
+        }
+      })
+      .then(() => {
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 30000);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
     handleOutsidePopupClick();
   };
@@ -102,9 +120,24 @@ function Appointment() {
       },
     };
 
-    setCalEvent(event).catch((err) => {
-      console.log(err);
-    });
+    setCalEvent(event)
+      .then((res) => {
+        if (res.status === 'confirmed') {
+          setIsSuccess(true);
+        }
+        if (res.stats !== 'confirmed') {
+          setIsFail(true);
+        }
+      })
+      .then(() => {
+        setTimeout(() => {
+          setIsSuccess(false);
+          setIsFail(false);
+        }, 30000);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
     handleOutsidePopupClick();
   };
@@ -227,6 +260,10 @@ function Appointment() {
     convergeGet();
   }
 
+  function handleAmount() {
+    sendConvergeData();
+  }
+
   return (
     <main className='appointment'>
       <Helmet>
@@ -269,15 +306,36 @@ function Appointment() {
           tileDisabled={({ date }) => date.getDay() === 0}
         />
 
-        <ul className='appointment__list' ref={ref}>
-          {isDateClicked &&
-            timesAvailable.map((time) => {
-              //if today = clickedday and if the time hasnt passed
-              if (checkTime.getDate() === date.getDate()) {
-                if (
-                  checkTime.getHours().toString() < time ||
-                  checkTime.getHours().toString() < 10
-                ) {
+        {isSuccess ? (
+          <p className='appointment__paragraph p_textSize'>
+            Appointment was successfully scheduled{' '}
+          </p>
+        ) : isFail ? (
+          <p className='appointment__paragraph p_textSize'>
+            Something went wrong with scheduling appointment
+          </p>
+        ) : (
+          <ul className='appointment__list' ref={ref}>
+            {isDateClicked &&
+              timesAvailable.map((time) => {
+                //if today = clickedday and if the time hasnt passed
+                if (checkTime.getDate() === date.getDate()) {
+                  if (
+                    checkTime.getHours().toString() < time ||
+                    checkTime.getHours().toString() < 10
+                  ) {
+                    return (
+                      <li className='appointment__list-item' key={time}>
+                        <button
+                          className='appointment__list-item_button'
+                          onClick={() => handleEventClick(time)}
+                        >
+                          {timeConversion(time)}
+                        </button>
+                      </li>
+                    );
+                  }
+                } else {
                   return (
                     <li className='appointment__list-item' key={time}>
                       <button
@@ -289,20 +347,10 @@ function Appointment() {
                     </li>
                   );
                 }
-              } else {
-                return (
-                  <li className='appointment__list-item' key={time}>
-                    <button
-                      className='appointment__list-item_button'
-                      onClick={() => handleEventClick(time)}
-                    >
-                      {timeConversion(time)}
-                    </button>
-                  </li>
-                );
-              }
-            })}
-        </ul>
+              })}
+          </ul>
+        )}
+
         {
           // ref.current && ref.current.children.length === 0
           timesAvailable.length === 0 ? (
@@ -312,7 +360,9 @@ function Appointment() {
           )
         }
       </div>
-      <button onClick={handleConverge}>Contact converge</button>
+      {/* <button onClick={handleConverge}>Contact converge</button> */}
+      {/* <button onClick={handleAmount}>Send amount request</button> */}
+      <a href='http://localhost:3000/payment'>Send amount request</a>
     </main>
   );
 }
