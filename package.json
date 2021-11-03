@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "node": "node server.js",
-    "build": "react-scripts NODE_OPTIONS=--openssl-legacy-provider build",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build"
