@@ -1,4 +1,5 @@
-const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'https://bashi-testing.herokuapp.com/appointments';
 
 export const getCalEvents = (date) => {
   return fetch(`${BASE_URL}/events`, {
